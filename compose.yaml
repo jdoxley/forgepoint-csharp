@@ -1,0 +1,7 @@
+﻿services:
+  forgepoint:
+    image: forgepoint
+    build:
+      context: .
+      dockerfile: Forgepoint/Dockerfile
+
