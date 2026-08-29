@@ -1,3 +1,4 @@
+using ForgePoint.Auditing;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +8,8 @@ using Forgepoint.Data;
 using Radzen;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Configuration.AddJsonFile("config.json");
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
@@ -23,7 +26,7 @@ builder.Services.AddAuthentication(options =>
     })
     .AddIdentityCookies();
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
+var connectionString = builder.Configuration.GetConnectionString("Forgepoint") ??
                        throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(connectionString));
@@ -42,6 +45,10 @@ builder.Services.AddIdentityCore<ApplicationUser>(options =>
 
 builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
 builder.Services.AddRadzenComponents();
+builder.Services.AddForgePointAuditing<ApplicationDbContext>(builder.Configuration, types =>
+{
+    types.WithIdentityDefaults<ApplicationUser, Guid>();
+});
 
 
 #endregion

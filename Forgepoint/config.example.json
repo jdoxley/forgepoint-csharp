@@ -1,0 +1,6 @@
+{
+  "ConnectionStrings": {
+    "Forgepoint": "postgresql://forgepoint_app:password@localhost:5432/forgepoint",
+    "ForgepointAuditor": "postgresql://forgepoint_auditor:password@localhost:5432/forgepoint"
+  }
+}

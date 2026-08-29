@@ -58,6 +58,7 @@ out/
 .env
 .env.local
 .env.*.local
+config.json
 
 # npm cache directory
 .npm

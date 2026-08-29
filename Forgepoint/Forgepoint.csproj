@@ -10,20 +10,31 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Update="Data\app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true"/>
+        <Content Remove="config.example.json" />
+        <None Include="config.example.json">
+          <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="Audit.EntityFramework.Core" Version="32.3.1" />
+        <PackageReference Include="Audit.EntityFramework.Identity.Core" Version="32.3.1" />
+        <PackageReference Include="HtmlSanitizer" Version="9.2.1039" />
         <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="10.0.1"/>
         <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.1"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.1"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.1"/>
+        <PackageReference Include="Npgsql" Version="10.0.3" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.3" />
         <PackageReference Include="Radzen.Blazor" Version="11.2.6" />
     </ItemGroup>
 
     <ItemGroup>
       <Content Include="..\.dockerignore">
         <Link>.dockerignore</Link>
+      </Content>
+      <Content Update="config.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
     </ItemGroup>
 
